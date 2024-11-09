@@ -1,37 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { Application } from "vue3-pixi";
+import textureUrl from "../assets/001.png";
+import { Rectangle } from "pixi.js";
 
-defineProps<{ msg: string }>()
+const hitArea = new Rectangle(0, 0, 256, 256);
 
-const count = ref(0)
+function onClick() {
+  console.log('sprite clicked!');
+}
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Learn more about IDE Support for Vue in the
-    <a
-      href="https://vuejs.org/guide/scaling-up/tooling.html#ide-support"
-      target="_blank"
-      >Vue Docs Scaling up Guide</a
-    >.
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+  <Application :width="640" :height="480">
+    <container>
+      <sprite :texture="textureUrl" :hit-area="hitArea" @click="onClick" />
+    </container>
+  </Application>
 </template>
 
 <style scoped>
