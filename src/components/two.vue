@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import { Loader, Application } from 'vue3-pixi';
 
+const windowHeight = window.innerHeight;
+const windowWidth = window.innerWidth;
+
 </script>
 
 <template>
-    <Application :width="1000" :height="750">
+    <Application :width="windowWidth" :height="windowHeight">
         <Loader
             :resources="[ '/models/spritesheet.json' ]"
         >
