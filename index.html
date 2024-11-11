@@ -1,13 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue + TS + PIXI</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://pixijs.download/release/pixi.min.js"></script>
+    <title>pixi入门练习</title>
+</head>
+<body>
+    <!-- <p>PIXI 是拖构施</p> -->
+    <div id="pixiContainer" style="width: 100%;height: 100%"></div>
+    <script>
+        let height = window.innerHeight;
+        let width = window.innerWidth;
+        let app = new PIXI.Application();
+        let index = 0;
+        async function init () {
+            await app.init({ width: width, height: height,backgroundColor: '#FFFFFF', overFlow: 'visible' })
+            // let app = new PIXI.Application({width: width, height: height,backgroundColor: '#FFFFFF'});
+            let pixiContainer = document.getElementById('pixiContainer');
+            pixiContainer.appendChild(app.view);
+        }
+       init();
+       
+        function drawPoint(x,y,size){
+            index++;
+            const graphicsOut = new PIXI.Graphics();// 创建一个Graphics对象用于绘制图形
+            graphicsOut.beginFill('#000000'); // 设置填充颜色为黑色
+            graphicsOut.drawCircle(x, y, size); // // 绘制一个半径为2的圆形，作为点
+            graphicsOut.endFill();// 结束填充
+            app.stage.addChild(graphicsOut); // 将图形添加到舞台
+            
+            const graphics = new PIXI.Graphics();// 创建一个Graphics对象用于绘制图形
+            graphics.beginFill('#0000FF'); // 设置填充颜色为蓝色
+            graphics.drawCircle(x, y, size/2); // 绘制一个半径为2的圆形，作为点
+            graphics.endFill();// 结束填充
+            app.stage.addChild(graphics);// 将图形添加到舞台
+        }
+
+        for (let i = 0; i < 100; i++) {
+            for (let j = 0; j < 100; j++) {
+                this.drawPoint(50+i*50,50+j*50,4);
+            }
+        }
+        console.log('index', index);
+    </script>
+</body>
 </html>
